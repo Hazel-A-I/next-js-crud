@@ -9,12 +9,13 @@ import LicenseDetails from "@/components/licenses/LicenseDetails";
 import LicenseForm from "@/components/licenses/LicenseForm";
 import LicenseList from "@/components/licenses/LicenseList";
 import LicenseTile from "@/components/licenses/LicenseTile";
+import { getSession } from "@/lib/utils/login-session-lib";
 import React from "react";
 
-const Page = () => {
+const Page = async () => {
+	const session = await getSession();
 	return (
 		<>
-			<Header />
 			<Credentials />
 			<LicenseDetails />
 			<LicenseForm />
@@ -24,7 +25,6 @@ const Page = () => {
 			<CompanyForm />
 			<CompanyList />
 			<CompanyTile />
-			<Footer />
 		</>
 	);
 };

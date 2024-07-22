@@ -1,19 +1,25 @@
-import hashPassword from "@/lib/utils/hash-password";
+import hashPassword from "../../src/lib/utils/hash-password";
 import { Prisma, PrismaClient } from "@prisma/client";
-import { config as envConfig } from "dotenv";
-envConfig();
+import { config } from "dotenv";
+config();
 const db = new PrismaClient();
 
 async function main() {
+	const johnDoePassword = await hashPassword(
+		(process.env as { INTERVIEW_PASSWORD: string }).INTERVIEW_PASSWORD,
+	);
+	const janeDoePassword = await hashPassword(
+		(process.env as { SECOND_USER_PASSWORD: string }).SECOND_USER_PASSWORD,
+	);
 	const credentials: Prisma.BatchPayload = await db.credentials.createMany({
 		data: [
 			{
 				username: "John Doe",
-				password: await hashPassword(process.env.INTERVIEW_PASSWORD),
+				password: johnDoePassword,
 			},
 			{
 				username: "Jane Doe",
-				password: await hashPassword(process.env.SECOND_USER_PASSWORD),
+				password: janeDoePassword,
 			},
 		],
 	});

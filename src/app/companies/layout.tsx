@@ -1,3 +1,6 @@
+import MyContainer from "@/components/Container";
+import Header from "@/components/Header";
+
 export default function DashboardLayout({
 	children,
 }: {
@@ -5,9 +8,8 @@ export default function DashboardLayout({
 }) {
 	return (
 		<section>
-			<nav></nav>
-
-			{children}
+			<Header />
+			<MyContainer>{children}</MyContainer>
 		</section>
 	);
 }
