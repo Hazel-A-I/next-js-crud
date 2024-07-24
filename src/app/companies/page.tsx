@@ -1,7 +1,5 @@
 import React from "react";
-import CompanyForm from "@/components/company/CompanyForm";
 import CompanyList from "@/components/company/CompanyList";
-import { redirect } from "next/navigation";
 const Page = () => {
 	return (
 		<div className="flex flex-col items-center">

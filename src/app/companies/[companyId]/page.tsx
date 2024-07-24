@@ -1,9 +1,11 @@
 import CompanyDetails from "@/components/company/CompanyDetails";
+import LicenseList from "@/components/licenses/LicenseList";
 import prisma from "@/lib/utils/db";
 import { revalidatePath } from "next/cache";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import React from "react";
+
 const deleteCompany = async (formData: FormData) => {
 	"use server";
 	const id: string = formData.get("id") as unknown as string;
@@ -25,13 +27,23 @@ const page = ({ params }: { params: { companyId: string } }) => {
 					Voltar.
 				</a>
 				<CompanyDetails companyId={parseInt(params.companyId)} />
-				<div className="flex gap-4">
-					<Link href={`/companies/${params.companyId}/edit-company`}>
+				<div className="flex gap-4 p-2">
+					<Link
+						className="border border-white px-2 py-1"
+						href={`/companies/${params.companyId}/edit-company`}>
 						Editar
 					</Link>
 					<input type="hidden" name="id" value={parseInt(params.companyId)} />
-					<button type="submit">Deletar</button>
+					<button type="submit" className="border border-white px-2 py-1">
+						Deletar
+					</button>
 				</div>
+				<a
+					href={`/companies/${params.companyId}/licenses/add-new-license`}
+					className="flex items-center justify-center text-center font-bold mt-5 h-16 w-20 bg-slate-600 text-white rounded-xl">
+					Criar licença
+				</a>
+				<LicenseList companyId={parseInt(params.companyId)} />
 			</div>
 		</form>
 	);
