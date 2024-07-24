@@ -13,11 +13,11 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Credentials {
-  id        String   @id @default(uuid())
-  username  String   @unique
-  password  String
-}
+// model Credentials {
+//   id        String   @id @default(uuid())
+//   username  String   @unique
+//   password  String
+// }
 
 model Company {
   id           Int      @id @default(autoincrement())

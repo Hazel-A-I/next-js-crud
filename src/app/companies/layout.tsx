@@ -1,4 +1,3 @@
-import MyContainer from "@/components/Container";
 import Header from "@/components/Header";
 
 export default function DashboardLayout({
@@ -7,9 +6,11 @@ export default function DashboardLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<section>
+		<section className="w-full">
 			<Header />
-			<MyContainer>{children}</MyContainer>
+			<div className="h-16 mb-10"></div>
+			{children}
+			<div className="h-16"></div>
 		</section>
 	);
 }

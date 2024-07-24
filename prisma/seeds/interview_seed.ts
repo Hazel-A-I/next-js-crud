@@ -1,28 +1,29 @@
+import prisma from "@/lib/utils/db";
 import hashPassword from "../../src/lib/utils/hash-password";
 import { Prisma, PrismaClient } from "@prisma/client";
 import { config } from "dotenv";
 config();
-const db = new PrismaClient();
+const db = prisma;
 
 async function main() {
-	const johnDoePassword = await hashPassword(
-		(process.env as { INTERVIEW_PASSWORD: string }).INTERVIEW_PASSWORD,
-	);
-	const janeDoePassword = await hashPassword(
-		(process.env as { SECOND_USER_PASSWORD: string }).SECOND_USER_PASSWORD,
-	);
-	const credentials: Prisma.BatchPayload = await db.credentials.createMany({
-		data: [
-			{
-				username: "John Doe",
-				password: johnDoePassword,
-			},
-			{
-				username: "Jane Doe",
-				password: janeDoePassword,
-			},
-		],
-	});
+	// const johnDoePassword = await hashPassword(
+	// 	(process.env as { INTERVIEW_PASSWORD: string }).INTERVIEW_PASSWORD,
+	// );
+	// const janeDoePassword = await hashPassword(
+	// 	(process.env as { SECOND_USER_PASSWORD: string }).SECOND_USER_PASSWORD,
+	// );
+	// const credentials: Prisma.BatchPayload = await db.credentials.createMany({
+	// 	data: [
+	// 		{
+	// 			username: "John Doe",
+	// 			password: johnDoePassword,
+	// 		},
+	// 		{
+	// 			username: "Jane Doe",
+	// 			password: janeDoePassword,
+	// 		},
+	// 	],
+	// });
 	const companies: Prisma.BatchPayload = await db.company.createMany({
 		data: [
 			{
@@ -85,9 +86,7 @@ async function main() {
 			},
 		],
 	});
-	console.log(
-		`Seeding done with: ${credentials.count} credentials, ${companies.count} companies and ${licenses.count} licenses.`,
-	);
+	console.log(`Seeding done`);
 }
 main() // i kinda like promises due to not looking too messy like a try catch
 	.catch((e) => {
