@@ -1,9 +1,7 @@
-import prisma from "@/lib/utils/db";
-import hashPassword from "../../src/lib/utils/hash-password";
 import { Prisma, PrismaClient } from "@prisma/client";
 import { config } from "dotenv";
 config();
-const db = prisma;
+const db = new PrismaClient();
 
 async function main() {
 	// const johnDoePassword = await hashPassword(
