@@ -6,7 +6,8 @@ Projeto realizado para a avaliação prática de uma entrevista, 1 semana de pra
 #### Tecnologias aprendidas:
 - Prisma
 - Aprofundamento no Next (eu o utilizava apenas para estilização e SEO antes)
-- 
+- JWT e Session, criptografia blowfish para senhas. (não implementado completamente, irei finalizar em uma branch após o prazo)
+- Zod (validação de formulários e maior type safety, também não implementado devido a deadline, também está em planejamento para uma branch separada)
 
 ## Requisitos
 
